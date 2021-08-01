@@ -11,22 +11,17 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, cue, clave, done) => {
-      /*const newinstituto = {
-      cue,
-      clave
-      }*/
-      //newinstituto.clave = await cifrarClave(clave) //!CIFRAR CLAVE
+      
       console.log("body: " + req);
       try {
         const resultado = await pool.query(
           "INSERT INTO institutos SET ?",
           req.body
-        ); //[newinstituto]);
-        //newinstituto.id = resultado.insertId;
-
-        //req.body.clave  = await cifrarClave(clave); //!CIFRAR CLAVE
-        console.log(resultado);
-
+        ); 
+        
+        exports.cueActual = cue;
+        console.log("desde passport register:" +exports.cueActual);
+  
         return done(null, req.body);
 
       } catch (err) {
@@ -50,13 +45,14 @@ passport.use( "local.signin", new LocalStrategy(
 
         if (institutos.length > 0) {
           const institutoUno = institutos[0];
-          console.log("clave: " +  clave + " institutoUno.clave: " +  institutoUno.clave );
-
-         /* const claveValida = await compararClaves(clave, institutoUno.clave);
-          console.log("clave valida: " + claveValida);*/
+          
 
           if (clave == institutoUno.clave) {
+            //TODO CUE CAMBIAR
+            exports.cueActual = cue;
+            console.log("desde passport:" +exports.cueActual);
             done(null, institutoUno);
+            
           } else {
             done(null, false);
           }

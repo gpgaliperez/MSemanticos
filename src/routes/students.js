@@ -12,24 +12,13 @@ const  {
 
 } = require("../controllers/students")
 
-
-//TODO DESCOMENTAR
-//rutaS.use(isLoggedIn)
-
-
 rutaS.route("/agregar")
-    .get(agregarAlumnos)
-    .post(guardarAlumnos)
+    .get(isLoggedIn, agregarAlumnos)
+    .post(isLoggedIn, guardarAlumnos)
 
-rutaS.route("/editar/:id")
-    .get(editarAlumnos)
-    .post(guardarAlumnosEditados)
 
 rutaS.route("/listado")
-    .get(getAllAlumnos)
-
-/*rutaS.route("/eliminar/:id")
-    .get(eliminarAlumnos)*/
+    .get(isLoggedIn,getAllAlumnos)
 
 
 module.exports = rutaS;
