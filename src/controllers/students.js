@@ -61,9 +61,16 @@ exports.guardarAlumnos = async (req, res, next) =>{
             convive : req.body.conviveH3 === "on" ? true : false,
             nro_alumno: req.body.dni
         }
-        
+      
+        const ingresoP = parseInt(req.body.ingresoP === "" ? 0 : req.body.ingresoP,10)
+        const ingresoM = parseInt(req.body.ingresoM === "" ? 0 : req.body.ingresoM,10)
+        const gastosEnfermedad = parseInt(req.body.gastoEnfermedad === "" ? 0 : req.body.gastoEnfermedad,10)
+
         //CALCULO INGRESOS - GASTOS
-        const ingresoGastos = (req.body.ingresoP + req.body.ingresoM) - req.body.gastoEnfermedad
+        const ingresoGastos = ( ingresoP + ingresoM) - gastosEnfermedad
+        console.log(ingresoP, ingresoM, gastosEnfermedad);
+        console.log(ingresoGastos)
+
 
         //CALCULO CANTIDAD DE HERMANOS
         const array =[newHermano1, newHermano2, newHermano3]
@@ -85,7 +92,7 @@ exports.guardarAlumnos = async (req, res, next) =>{
             diferencia_ingreso_gastos : ingresoGastos,
             cantidad_hermanos: cantHermanos
         }
-
+        console.log(newBeca.id_beca, newBeca.posee_enfermedad, newBeca.diferencia_ingreso_gastos, newBeca.cantidad_hermanos)
         
         const becaCreada = await pool.query('INSERT INTO becas SET ?', [newBeca]);
 
@@ -144,11 +151,13 @@ exports.guardarAlumnos = async (req, res, next) =>{
 }
 
 exports.getAllAlumnos = async (req, res, next) =>{
-    //res.render("students/list")
-    //const alumnos = await pool.query("SELECT * FROM becas ");
-    //const becas = await pool.query("SELECT * FROM alumnos WHERE nro_instituo = ? ", [cueActualObj.cueActual] );
-    const becas = await pool.query('SELECT * FROM   becas  WHERE  id_beca = (SELECT nro_beca FROM   alumnos   WHERE   nro_instituto = ?)',[cueActualObj.cueActual] );    
-    res.send(becas);
+    try{
+      const becas = await pool.query('SELECT b.* FROM becas b, alumnos a WHERE b.id_beca = a.nro_beca AND a.nro_instituto = ?',[cueActualObj.cueActual] );
+      res.send(becas);  
+    } catch (err) {
+        throw err;
+      }
+    
 }
 
 
