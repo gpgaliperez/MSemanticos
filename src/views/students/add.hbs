@@ -134,7 +134,7 @@
   </head>
   <body>
     <div class="testbox">
-       <form action="/agregar" method="POST">
+       <form action="/alumnos/agregar" method="POST">
         <h1>BECA ALIMENTARIA</h1>
         <h5>A COMPLETAR POR EL ALUMNO SOLICITANTE</h5>
         <div class="item">
@@ -153,8 +153,8 @@
           <input type="number" name="cuil"/>
         </div>
          <p>Grado y Turno</p>
-        <div class="city-item">
-            <input type="text" name="grado" placeholder="Numero de grado" />
+        <div class="name-item">
+            <input type="number" name="grado" placeholder="Numero de grado" />
             <input type="text" name="turno" placeholder="Tarde/mañana" />
           </div>
         <div class="item">
@@ -165,7 +165,7 @@
         <div class="item">
           <p>Domicilio</p>
           <input type="text" name="domicilio" placeholder="Calle"/>
-          <div class="city-item">
+          <div class="name-item">
             <input type="text" name="localidad" placeholder="Localidad" />
             <input type="text" name="codigo_postal" placeholder="Codigo postal" />
           </div>
@@ -183,67 +183,90 @@
          <hr>
         <h5>DATOS DEL GRUPO FAMILIAR</h5>
         <div class="item">
-          <p>PADRE Y MADRE</p>
+          <p>PADRE</p>
             <div class="name-item">
             <input type="text" name="nombreP" placeholder="Nombre" />
             <input type="text" name="apellidoP" placeholder="Apellido" />
           </div>
           <div class="data-item">
-            <input type="text" name="edadP" placeholder="Edad" />
+            <input type="number" name="edadP"  value=0 placeholder="Edad" />
             <input type="text" name="ocupacionP" placeholder="Ocupacion" />
             <input type="text" name="lugarTrabajoP" placeholder="Lugar de trabajo" />
-            <input type="text" name="ingresoP" placeholder="Ingresos " />
+            <input type="number" name="ingresoP" placeholder="Ingresos " />
+          </div>
+          <div class="preferred-metod-item">
+            <label><input type="checkbox" name="conviveP"> <span>¿Convive?</span></label>
           </div>
           
           <hr width=400>
+          <p>MADRE</p>
           <div class="name-item">
-            <input type="text" name="name" placeholder="Nombre" />
-            <input type="text" name="name" placeholder="Apellido" />
+            <input type="text" name="nombreM" placeholder="Nombre" />
+            <input type="text" name="apellidoM" placeholder="Apellido" />
           </div>
           <div class="data-item">
-            <input type="text" name="name" placeholder="Edad" />
-            <input type="text" name="name" placeholder="Ocupacion" />
-            <input type="text" name="name" placeholder="Lugar de trabajo" />
-            <input type="text" name="name" placeholder="Ingresos Netos" />
+            <input type="number" name="edadM"value=0 placeholder="Edad" />
+            <input type="text" name="ocupacionM" placeholder="Ocupacion" />
+            <input type="text" name="lugarTrabajoM" placeholder="Lugar de trabajo" />
+            <input type="number" name="ingresoM" placeholder="Ingresos Netos" />
+          </div>          
+          <div class="preferred-metod-item">
+            <label><input type="checkbox" name="conviveM"> <span>¿Convive?</span></label>
           </div>
-          
+
         </div>
 
          <hr>
          <div class="item">
           <p>HERMANOS EDAD ESCOLAR</p>
             <div class="name-item">
-            <input type="text" name="name" placeholder="Nombre" />
-            <input type="text" name="name" placeholder="Apellido" />
+            <input type="text" name="nombreH1" placeholder="Nombre" />
+            <input type="text" name="apellidoH1" placeholder="Apellido" />
           </div>
           <div class="data-item">
-            <input type="text" name="name" placeholder="Edad" />
-            <input type="text" name="name" placeholder="Ocupacion" />
-            <input type="text" name="name" placeholder="Lugar de trabajo" />
-            <input type="text" name="name" placeholder="Ingresos Netos" />
+            <input type="number" name="edadH1" value=0 placeholder="Edad" />
+            <input type="text" name="ocupacionH1" placeholder="Ocupacion" />
+            <input type="text" name="escuelaH1" placeholder="Escuela" />
+          </div>
+          <div class="preferred-metod-item">
+            <label><input type="checkbox" name="conviveH1"> <span>¿Convive?</span></label>
           </div>
           <hr width=400>
           <div class="name-item">
-            <input type="text" name="name" placeholder="Nombre" />
-            <input type="text" name="name" placeholder="Apellido" />
+            <input type="text" name="nombreH2" placeholder="Nombre" />
+            <input type="text" name="apellidoH2" placeholder="Apellido" />
           </div>
           <div class="data-item">
-            <input type="text" name="name" placeholder="Edad" />
-            <input type="text" name="name" placeholder="Ocupacion" />
-            <input type="text" name="name" placeholder="Lugar de trabajo" />
-            <input type="text" name="name" placeholder="Ingresos Netos" />
+            <input type="number" name="edadH2" value=0 placeholder="Edad" />
+            <input type="text" name="ocupacionH2" placeholder="Ocupacion" />
+            <input type="text" name="escuelaH2" placeholder="Escuela" />
+          </div>
+          <div class="preferred-metod-item">
+            <label><input type="checkbox" name="conviveH2"> <span>¿Convive?</span></label>
+          </div>
+          <hr width=400>
+          <div class="name-item">
+            <input type="text" name="nombreH3"  placeholder="Nombre" />
+            <input type="text" name="apellidoH3" placeholder="Apellido" />
+          </div>
+          <div class="data-item">
+            <input type="number" name="edadH3" value=0 placeholder="Edad" />
+            <input type="text" name="ocupacionH3" placeholder="Ocupacion" />
+            <input type="text" name="escuelaH3" placeholder="Escuela" />
+          </div>
+          <div class="preferred-metod-item">
+            <label><input type="checkbox" name="conviveH3"> <span>¿Convive?</span></label>
           </div>
 
           <div class="item preferred-metod">
-          <p>¿Algun miembro del grupo familiar sufre de una enfermedad crónica?</p>
+          <p>Antecedentes</p>
           <div class="preferred-metod-item">
-            <label><input type="checkbox" name="name"> <span>Si</span></label>
-            <label><input type="checkbox" name="name"> <span>No</span></label>
+            <label><input type="checkbox" name="enfermedadCronica"> <span>¿Algun miembro del grupo familiar sufre de una enfermedad crónica?</span></label>
           </div>
           <p>Diagnóstico</p>
           <textarea rows="3"></textarea>
           <p>Gasto mensual derivado de dicha enfermedad crónica</p>
-          <input type="text" name="name" />
+          <input type="number" name="gastoEnfermedad" />
         </div>
         </div>
 

@@ -7,11 +7,12 @@ CREATE TABLE institutos(
 
 
 CREATE TABLE becas(
-	id_beca INTEGER NOT NULL auto_increment,
+	id_beca INTEGER NOT NULL ,
 	posee_enfermedad BOOLEAN NOT NULL,
     diferencia_ingreso_gastos INTEGER NOT NULL,
     estado VARCHAR(20) NOT NULL,
     tipo VARCHAR(20) NOT NULL,
+    cantidad_hermanos INTEGER,
     PRIMARY KEY(id_beca)
 );
 
